@@ -9,6 +9,7 @@ public class Demo{
         Point P2 = new Point(3,4);
 
 	System.out.println(distance(P1,P2));
-        System.out.println(  P1.distanceTo(P2));
+	System.out.println(Point.distance(P1,P2));
+	System.out.println(  P1.distanceTo(P2));
     }
  } 
