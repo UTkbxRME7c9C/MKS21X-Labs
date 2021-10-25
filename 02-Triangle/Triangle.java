@@ -20,8 +20,13 @@ public class Triangle{
 
 	public static void main(String[]args) {
 		Triangle T1 = new Triangle(1,2,3,4,6,3);
-		Triangle T2 = new Triangle(new Point(1,2),new Point(3,4),new Point(6,3));
+		Triangle T2 = new Triangle(new Point(1*Math.sqrt(4),2),new Point(3*Math.sqrt(4),4),new Point(6*Math.sqrt(3),3*Math.sqrt(2)));
 		System.out.println(T1.toString());
 		System.out.println(T2.toString());
+		System.out.println(T1.getPerimeter());
+		System.out.println(T2.getPerimeter());
+	}
+	public double getPerimeter(){
+		return v1.distanceTo(v2) + v2.distanceTo(v3) + v3.distanceTo(v1);
 	}
 }
