@@ -30,6 +30,10 @@ public class Triangle{
 		return v1.distanceTo(v2) + v2.distanceTo(v3) + v3.distanceTo(v1);
 	}
 
+	public static boolean closeEnough(double a, double b){
+		double clo = (Math.abs((a-b)/b))*100;
+		return clo <= 0.001:
+	}
 	public static void main(String[]args) {
 		Triangle T1 = new Triangle(1,2,3,4,6,3);
 		Triangle T2 = new Triangle(new Point(1*Math.sqrt(4),2),new Point(3*Math.sqrt(4),4),new Point(6*Math.sqrt(3),3*Math.sqrt(2)));
