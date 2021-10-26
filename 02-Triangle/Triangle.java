@@ -32,7 +32,7 @@ public class Triangle{
 
 	public static boolean closeEnough(double a, double b){
 		double clo = (Math.abs((a-b)/b))*100;
-		return clo <= 0.001:
+		return (clo <= 0.001) || (a == 0.0 && b == 0.0);
 	}
 	public static void main(String[]args) {
 		Triangle T1 = new Triangle(1,2,3,4,6,3);
@@ -44,6 +44,8 @@ public class Triangle{
 		T3.setVertex(1, new Point(5,5));
 		System.out.println(T3.getVertex(1).toString());
 		System.out.println(T3.toString());
-
+		Point P1 = new Point(0.1234567890,0.1234567899);
+		System.out.println(closeEnough(0.00000, 0.0000));
+		System.out.println(P1.equals(new Point(0.001, 0.001)));
 	}
 }
