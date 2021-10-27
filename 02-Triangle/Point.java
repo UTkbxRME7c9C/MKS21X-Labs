@@ -25,6 +25,7 @@ public class Point{
 	return (clo <= 0.001) || (a == 0.0 && b == 0.0);
     }
     public boolean equals(Point other){
+	if (other == null){return false;}
     	return closeEnough(x, other.x) && closeEnough(y, other.y);	    
     }
     public double distanceTo(Point a){
