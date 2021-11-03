@@ -56,18 +56,26 @@ public class RationalNumber extends RealNumber
   }
 
   public RationalNumber multiply(RationalNumber other){
-    return (new RationalNumber(numerator * other.numerator, denominator * other.denominator));
+    RationalNumber aa = new RationalNumber(numerator * other.numerator, denominator * other.denominator);
+    aa.reduce();
+    return aa;
   }
 
   public RationalNumber divide(RationalNumber other){
-    return (new RationalNumber(numerator * other.denominator, denominator * other.numerator));
+    RationalNumber aa = new RationalNumber(numerator * other.denominator, denominator * other.numerator);
+    aa.reduce();
+    return aa;
   }
 
   public RationalNumber add(RationalNumber other){
-    return (new RationalNumber((numerator * other.denominator)+(other.numerator*denominator), denominator * other.denominator));
+    RationalNumber aa = new RationalNumber((numerator * other.denominator)+(other.numerator*denominator), denominator * other.denominator);
+    aa.reduce();
+    return aa;
   }
 
   public RationalNumber subtract(RationalNumber other){
-    return (new RationalNumber((numerator * other.denominator)-(other.numerator*denominator), denominator * other.denominator));
+    RationalNumber aa = new RationalNumber((numerator * other.denominator)-(other.numerator*denominator), denominator * other.denominator);
+    aa.reduce();
+    return aa;
   }
 } 

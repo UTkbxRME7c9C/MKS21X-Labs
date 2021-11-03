@@ -8,14 +8,17 @@ public class Tester{
         System.out.println(wow.divide(now));
         System.out.println(wow.multiply(now));
         System.out.println(wow.add(now));
-        RationalNumber naw = new RationalNumber(3, 2);
-        RationalNumber waw = new RationalNumber(30, 40);
+        RationalNumber naw = new RationalNumber(1, 2);
+        RationalNumber waw = new RationalNumber(3, 4);
         System.out.println("rational " + waw.getNumerator());
         System.out.println(waw.getDenominator());
         System.out.println(waw.toString());
         System.out.println(waw.reciprocal().toString());
         System.out.println(waw.equals(naw));
         System.out.println(waw.multiply(naw).toString());
+        System.out.println(waw.divide(naw).toString());
+        System.out.println(waw.add(naw).toString());
+        System.out.println(naw.subtract(waw).toString());
 
 
 
