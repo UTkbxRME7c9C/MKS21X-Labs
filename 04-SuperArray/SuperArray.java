@@ -20,14 +20,25 @@ public class SuperArray{
         }
         return start + "]";
     }
-    
+    public String get(int index){
+        if (index < 0 || index >= size)
+          return "";
+        return data[index];
+    }
     public String toStringDebug(){
-        return Arrays.toString(data);
+        String start = "[";
+        for (int i = 0; i<data.length;i++){
+          start += data[i];
+          if (i != data.length-1)
+            start += ", ";
+        }
+        return start + "]";
     }
 
-    public void add(String me){
+    public boolean add(String me){
         data[size] = me;
         size++;
+        return true;
     }
 
 }
