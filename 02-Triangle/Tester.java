@@ -49,7 +49,7 @@ public class Tester{
 
     System.out.println("Check if other triangle is null before you compare V1,V2,V3. If you don't then this will crash:");
     if (t1.equals(null)){
-      System.out.println( "ERROR in triangle equals result." );
+      System.out.println( "ERROR" );
     }else{
       System.out.println( "Correct triangle equals result." );
 
