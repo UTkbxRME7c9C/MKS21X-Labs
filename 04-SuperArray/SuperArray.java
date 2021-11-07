@@ -10,6 +10,9 @@ public class SuperArray{
     public int size(){
         return size;
     }
+    public String[] data(){
+        return data;
+    }
 
     public String toString(){
         String start = "[";
