@@ -22,6 +22,10 @@ public class Test{
     old.data()[old.size()-1] = "NOPE!";
     getloop(old);
   }
+
+
+
+
   public static void main(String[] args){
     SuperArray alist = new SuperArray();
     alist.add("Mario");
@@ -38,13 +42,14 @@ public class Test{
     System.out.println(alist);
     System.out.println(alist.toStringDebug());
     System.out.println(alist.size());
-    */
+
     System.out.println(alist.get(10));
     System.out.println(alist.set(0, "Luigi"));
     System.out.println(alist.get(0));
     getloop(alist);
     setloop(alist);
     loopone(alist);
+    */
 
   }
 }
