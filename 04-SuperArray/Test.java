@@ -35,6 +35,7 @@ public class Test{
     System.out.println(alist.toString());
     System.out.println(alist.toStringDebug());
     */
+    alist.add("Ash");
     alist.add("Samus");
     alist.add("Link");
     alist.add("Kirby");
@@ -50,6 +51,11 @@ public class Test{
     setloop(alist);
     loopone(alist);
     */
+    System.out.println(alist.indexOf("Ash"));
+    System.out.println(alist.lastIndexOf("Ash"));
+    alist.add(1, "aaa");
+    System.out.println(alist);
+
 
   }
 }

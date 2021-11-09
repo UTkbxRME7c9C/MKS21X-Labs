@@ -69,6 +69,7 @@ public class SuperArray{
           return i;
         }
       }
+      return -1;
     }
 
     public int lastIndexOf(String target){
@@ -77,14 +78,17 @@ public class SuperArray{
           return i;
         }
       }
+      return -1;
     }
 
     public void add (int index, String value){
       if (index < 0 || index > size)
           System.out.println("ERROR: Index is out of range");
       for (int i = size; i > index; i--){
-        
+        data[i] = data[i-1];
       }
+      data[index] = value;
+      size++;
     }
 
     public String remove(int index){
