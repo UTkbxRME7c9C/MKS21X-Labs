@@ -27,7 +27,7 @@ public class Test{
 
 
   public static void main(String[] args){
-    SuperArray alist = new SuperArray();
+    SuperArray alist = new SuperArray(6);
     alist.add("Mario");
     alist.add("Ash");
     /*
@@ -50,7 +50,7 @@ public class Test{
     getloop(alist);
     setloop(alist);
     loopone(alist);
-    */
+
     System.out.println(alist.indexOf("Ash"));
     System.out.println(alist.lastIndexOf("Ash"));
     alist.add(0, "aaa");
@@ -60,9 +60,14 @@ public class Test{
     alist.remove("Link");
     System.out.println(alist);
 
-
-
-
-
+    System.out.println(alist);
+    System.out.println(alist.toStringDebug());
+    alist.add("Steve");
+    alist.add(0, "aaa");
+    alist.add(6, "bbb");
+    alist.add(6, "bbb");
+    System.out.println(alist);
+    System.out.println(alist.toStringDebug());
+    */
   }
 }

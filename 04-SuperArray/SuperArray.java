@@ -22,7 +22,7 @@ public class SuperArray{
             start += ", ";
     }
     return start + "]";
-}
+  }
 
   public String toStringDebug(){
     String start = "[";
@@ -35,6 +35,8 @@ public class SuperArray{
   }
 
   public boolean add(String me){
+    if ( size == data.length)
+      resize();
     data[size] = me;
     size++;
     return true;
@@ -82,6 +84,8 @@ public class SuperArray{
   }
 
   public void add (int index, String value){
+    if ( size == data.length)
+      resize();
     if (index < 0 || index > size){
       throw new ArrayIndexOutOfBoundsException("ERROR: Index is out of range");
     }else{
@@ -119,5 +123,21 @@ public class SuperArray{
       }
     }
     return false;
+  }
+
+//phase 3
+
+  public SuperArray(int initialCapacity){
+    data = new String[initialCapacity];
+    size = 0;
+  }
+
+  private void resize(){
+    int newlen = (2*data.length)+1;
+    String[] newary = new String[newlen];
+    for (int i = 0;i<size;i++){
+      newary[i] = data[i];
+    }
+    data = newary;
   }
 }
