@@ -46,15 +46,22 @@ public class Test{
 
     System.out.println(alist.get(10));
     System.out.println(alist.set(0, "Luigi"));
-    System.out.println(alist.get(0));
+    System.out.println(alist.get(-1));
     getloop(alist);
     setloop(alist);
     loopone(alist);
     */
     System.out.println(alist.indexOf("Ash"));
     System.out.println(alist.lastIndexOf("Ash"));
-    alist.add(1, "aaa");
+    alist.add(0, "aaa");
     System.out.println(alist);
+    alist.remove(4);
+    System.out.println(alist);
+    alist.remove("Link");
+    System.out.println(alist);
+
+
+
 
 
   }
