@@ -37,17 +37,73 @@ public class SuperArrayExceptionTester{
     }
 
     //Test3: set -1
-
+    testNum++;
+    testName = "set out of bounds -1";
+    list = init();
+    try{
+        list.set(-1,"Test");
+        System.out.println(testNum+". FAIL! No exception thrown "+testName);
+    }catch(IndexOutOfBoundsException e){
+      System.out.println(testNum+". PASS "+testName);
+    }
     //Test4: set size()
-
+    testNum++;
+    testName = "set out of bounds size()";
+    list = init();
+    try{
+        list.set(list.size(),"Test");
+        System.out.println(testNum+". FAIL! No exception thrown "+testName);
+    }catch(IndexOutOfBoundsException e){
+      System.out.println(testNum+". PASS "+testName);
+    }
     //Test5: add(-1,value)
-
+    testNum++;
+    testName = "add out of bounds -1";
+    list = init();
+    try{
+        list.add(-1, "Test");
+        System.out.println(testNum+". FAIL! No exception thrown "+testName);
+    }catch(IndexOutOfBoundsException e){
+      System.out.println(testNum+". PASS "+testName);
+    }   
     //Test6: add(size()+1,value)
-
-    //Test7: constructor(-1 size)
-    //BE CAREFUL! Which exception is expected?
-
-
-
+    testNum++;
+    testName = "add out of bounds size()+1";
+    list = init();
+    try{
+        list.add(list.size()+1, "Test");
+        System.out.println(testNum+". FAIL! No exception thrown "+testName);
+    }catch(IndexOutOfBoundsException e){
+      System.out.println(testNum+". PASS "+testName);
+    } 
+    //Test7: remove (-1 )
+    testNum++;
+    testName = "remove out of bounds -1";
+    list = init();
+    try{
+        list.remove(-1);
+        System.out.println(testNum+". FAIL! No exception thrown "+testName);
+    }catch(IndexOutOfBoundsException e){
+      System.out.println(testNum+". PASS "+testName);
+    } 
+    //Test8: remove (size() )
+    testNum++;
+    testName = "remove out of bounds size()";
+    list = init();
+    try{
+        list.remove(list.size());
+        System.out.println(testNum+". FAIL! No exception thrown "+testName);
+    }catch(IndexOutOfBoundsException e){
+      System.out.println(testNum+". PASS "+testName);
+    } 
+    //Test9: array constructor  (-1 )
+    testNum++;
+    testName = "SuperArray(int) out of bounds -1";
+    try{
+      SuperArray ary = new SuperArray(-1);
+      System.out.println(testNum+". FAIL! No exception thrown "+testName);
+    }catch(IllegalArgumentException e){
+      System.out.println(testNum+". PASS "+testName);
+    } 
   }
 }

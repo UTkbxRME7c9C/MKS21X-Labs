@@ -46,8 +46,7 @@ public class SuperArray{
 
   public String get(int index){
     if (index < 0 || index >= size){
-      System.out.println("ERROR: Index is out of range");
-      return "null";
+      throw new IndexOutOfBoundsException("ERROR: Index is out of range");
     }
     return data[index];
   }
@@ -55,8 +54,7 @@ public class SuperArray{
   public String set(int index, String element){
     String orig = "";
     if (index < 0 || index >= size){
-        System.out.println("ERROR: Index is out of range");
-        return "null";
+      throw new IndexOutOfBoundsException("ERROR: Index is out of range");
     }
     orig = data[index];
     data[index] = element;
@@ -87,7 +85,7 @@ public class SuperArray{
     if ( size == data.length)
       resize();
     if (index < 0 || index > size){
-      throw new ArrayIndexOutOfBoundsException("ERROR: Index is out of range");
+      throw new IndexOutOfBoundsException("ERROR: Index is out of range");
     }else{
       for (int i = size; i > index; i--){
         data[i] = data[i-1];
@@ -99,8 +97,7 @@ public class SuperArray{
 
   public String remove(int index){
     if (index < 0 || index >= size){
-      System.out.println("ERROR: Index is out of range");
-      return "null";
+      throw new IndexOutOfBoundsException("ERROR: Index is out of range");
     }
     String old = data[index];
     for (int i = index; i < size-1; i++){
@@ -128,6 +125,8 @@ public class SuperArray{
 //phase 3
 
   public SuperArray(int initialCapacity){
+    if (initialCapacity < 0)
+      throw new IllegalArgumentException("ERROR: Size is negative");
     data = new String[initialCapacity];
     size = 0;
   }

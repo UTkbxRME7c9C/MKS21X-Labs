@@ -252,10 +252,10 @@ public class SuperArrayTester{
       e.printStackTrace();
     }
     /**************************************************
-     *TEST CASE 6
+     *TEST CASE 7
      */
     testNum++;
-    testName="Test with indexOf()";
+    testName="Test with indexOf() and lastIndexOf()";
     try {
       boolean result = true;
       SuperArray list2 = new SuperArray(20);
@@ -277,6 +277,16 @@ public class SuperArrayTester{
       } else if (list2.indexOf("fish") != 3){
         result = false;
       } 
+
+      if (list2.lastIndexOf("one") != values.length-2){
+        result = false;
+      } else if (list2.lastIndexOf("fish") != values.length-5  ){
+        result = false;
+      } 
+
+      list2.set(values.length-5, "Mofish");
+      if (list2.lastIndexOf("fish") != values.length-7  )
+        result = false;
 
       if(result){
         System.out.println(testNum+". PASS "+testName);
