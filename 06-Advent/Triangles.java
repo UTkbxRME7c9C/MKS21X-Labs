@@ -46,11 +46,11 @@ public class Triangles{
               throw new NoSuchFieldError("not a valid method");
       }
     }catch(FileNotFoundException e) {
-      System.out.println("you never said the file, add your file name");
+      System.out.println("please add filename");
     }catch(ArrayIndexOutOfBoundsException e){
-      System.out.println("exec again, but this time actually put the args (filename and method #)");
+      System.out.println("insufficient args, please add filename and method#");
     }catch(NoSuchFieldError e){
-      System.out.println("your method is wrong, it has to be either 1 or 2");
+      System.out.println("add method #, should be 1 or 2");
     }
   }
 }
