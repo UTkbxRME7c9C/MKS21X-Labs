@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Wrapper{
+public class Wrapping{
     public static void main(String[] args){
         try{
             if (args[1].equals("1")){
