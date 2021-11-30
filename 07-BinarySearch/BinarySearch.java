@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class BinarySearch{
   public static int binarySearch(int[] data, int target){
     int first = 0;
@@ -18,19 +20,16 @@ public class BinarySearch{
   }
 
   public static void main(String[] args){
-    int result;
-    result = binarySearch(new int[]{0,0,0,0,0,0,0},0);
-    System.out.println(result);//should be 3
-    result = binarySearch(new int[]{0,0,0,0,0,0,0},1);
-    System.out.println(result);//should be -1
-
-    result = binarySearch(new int[]{0,1,2,3,4,5,6},0);
-    System.out.println(result);//should be 0
-    result = binarySearch(new int[]{0,1,2,3,4,5,100},2);
-    System.out.println(result);//should be 6
-    result = binarySearch(new int[]{4,5,8},8);
-    System.out.println(result);//should be 2 but its not...
-
-
+    int[] arr = new int[10];
+    for (int i = 0;i<10;i++){
+      arr[i] = (int)(Math.random()*100);
+    }
+    Arrays.sort(arr);
+    System.out.println(Arrays.toString(arr));
+    System.out.println(binarySearch(arr, arr[1]));
+    System.out.println(binarySearch(arr, arr[2]));
+    System.out.println(binarySearch(arr, arr[3]));
+    System.out.println(binarySearch(arr, arr[4]));
+    System.out.println(binarySearch(arr, arr[5]));
   }
 }
