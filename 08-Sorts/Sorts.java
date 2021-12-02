@@ -2,10 +2,18 @@ import java.util.Arrays;
 
 public class Sorts{
   public static void main(String[]args){
-    int[] t1 = {5,4,4,2,1,1,2,5,6,7,3,99};
-    System.out.println(Arrays.toString(t1));
-    bubbleSort(t1);
-    System.out.println(Arrays.toString(t1));
+    int[] same = new int[1000];
+    int[] rand = new int[1000];
+    int[] nrand = new int[1000];
+    for (int i = 0;i <same.length; i++){
+      same[i] = 1;
+      rand[i] = (int)(Math.random()*100);
+      nrand[i] = rand[i]*-1;
+    }
+    System.out.println(test(same));
+    System.out.println(test(rand));
+    System.out.println(test(nrand));
+
   }
   public static void bubbleSort(int[] data){
     int t = data.length;
@@ -19,6 +27,14 @@ public class Sorts{
       }
       t--;
     }
-
+  }
+  public static boolean test(int[] data){
+    int[] copy = Arrays.copyOf(data, data.length);
+    int[] copy2 = Arrays.copyOf(data, data.length);
+    bubbleSort(copy);
+    Arrays.sort(copy2);
+    if (Arrays.equals(copy,copy2))
+      return true;
+    return false;
   }
 }
