@@ -16,20 +16,21 @@ public class Sorts{
     for(int i = 0;i<revand.length;i++){
       revand[i] = revand[i]*-1;
     } // [-1... -99]
-    System.out.println("Negative Reverse test = "+test(revand));
+    System.out.println("Negative Reverse test = "+test(revand, args[0]));
     Arrays.sort(revand); // [-99...-1]
     for(int i = 0;i<revand.length;i++){
       revand[i] = revand[i]*-1;
     }//[99...1]
-    System.out.println("Reverse sort test =     "+test(revand));
-    System.out.println("All same ints test =    "+test(same));
-    System.out.println("Random array test =     "+test(rand));
-    System.out.println("Negative random test =  "+ test(nrand));
-    System.out.println("No length test =        "+ test(noray));
-    System.out.println("One length test =       "+ test(Arrays.copyOf(rand, 1)));
-    System.out.println("Two length test =       "+ test(Arrays.copyOf(rand, 2)));
+    System.out.println("Reverse sort test =     "+test(revand, args[0]));
+    System.out.println("All same ints test =    "+test(same, args[0]));
+    System.out.println("Random array test =     "+test(rand, args[0]));
+    System.out.println("Negative random test =  "+ test(nrand, args[0]));
+    System.out.println("No length test =        "+ test(noray, args[0]));
+    System.out.println("One length test =       "+ test(Arrays.copyOf(rand, 1), args[0]));
+    System.out.println("Two length test =       "+ test(Arrays.copyOf(rand, 2), args[0]));
     Arrays.sort(rand);
-    System.out.println("Sort test               "+ test(rand));
+    System.out.println("Sort test               "+ test(rand, args[0]));
+
   }
   public static void bubbleSort(int[] data){
     int t = data.length;
@@ -44,13 +45,35 @@ public class Sorts{
       t--;
     }
   }
-  public static boolean test(int[] data){
+
+  public static boolean test(int[] data, String type){
     int[] copy = Arrays.copyOf(data, data.length);
     int[] copy2 = Arrays.copyOf(data, data.length);
-    bubbleSort(copy);
+    if (type.equals("bubbleSort")){
+      bubbleSort(copy);
+    } else if (type.equals("selectionSort")){
+      selectionSort(copy);
+    }
     Arrays.sort(copy2);
     if (Arrays.equals(copy,copy2))
       return true;
     return false;
+  }
+
+  public static void selectionSort(int[] ary){
+    int t = 0;
+    while (t < ary.length){
+      int min = Integer.MAX_VALUE;
+      int temp = 0;
+      for (int i = t;i<ary.length;i++){
+        if (ary[i] < min){
+          min = Math.min(min,ary[i]);
+          temp = i;
+        }
+      }
+      ary[temp] = ary[t];
+      ary[t] = min;
+      t++;
+    }
   }
 }
