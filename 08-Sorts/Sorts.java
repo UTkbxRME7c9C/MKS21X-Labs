@@ -5,15 +5,31 @@ public class Sorts{
     int[] same = new int[1000];
     int[] rand = new int[1000];
     int[] nrand = new int[1000];
+    int[] noray = new int[0];
     for (int i = 0;i <same.length; i++){
       same[i] = 1;
-      rand[i] = (int)(Math.random()*100);
+      rand[i] = (int)(Math.random()*1000);
       nrand[i] = rand[i]*-1;
     }
-    System.out.println(test(same));
-    System.out.println(test(rand));
-    System.out.println(test(nrand));
-
+    int[] revand = Arrays.copyOf(rand, 1000);
+    Arrays.sort(revand); // [1 ... 99]
+    for(int i = 0;i<revand.length;i++){
+      revand[i] = revand[i]*-1;
+    } // [-1... -99]
+    System.out.println("Negative Reverse test = "+test(revand));
+    Arrays.sort(revand); // [-99...-1]
+    for(int i = 0;i<revand.length;i++){
+      revand[i] = revand[i]*-1;
+    }//[99...1]
+    System.out.println("Reverse sort test =     "+test(revand));
+    System.out.println("All same ints test =    "+test(same));
+    System.out.println("Random array test =     "+test(rand));
+    System.out.println("Negative random test =  "+ test(nrand));
+    System.out.println("No length test =        "+ test(noray));
+    System.out.println("One length test =       "+ test(Arrays.copyOf(rand, 1)));
+    System.out.println("Two length test =       "+ test(Arrays.copyOf(rand, 2)));
+    Arrays.sort(rand);
+    System.out.println("Sort test               "+ test(rand));
   }
   public static void bubbleSort(int[] data){
     int t = data.length;
