@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class Sorts{
   public static void main(String[]args){
-    long start = System.nanoTime();
+    double start = System.nanoTime();
     int[] same = new int[1000];
     int[] rand = new int[1000];
     int[] nrand = new int[1000];
@@ -31,7 +31,7 @@ public class Sorts{
     System.out.println("Two length test =       "+ test(Arrays.copyOf(rand, 2), args[0]));
     Arrays.sort(rand);
     System.out.println("Sort test =             "+ test(rand, args[0]));
-    long end = (System.nanoTime()-start)/1000000000;
+    double end = (System.nanoTime()-start)/1000000000;
     System.out.println("Total time (s) =        "+ end);
 
   }
