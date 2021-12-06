@@ -2,7 +2,6 @@ import java.util.Arrays;
 
 public class Sorts{
   public static void main(String[]args){
-    double start = System.nanoTime();
     int[] same = new int[1000];
     int[] rand = new int[1000];
     int[] nrand = new int[1000];
@@ -31,9 +30,6 @@ public class Sorts{
     System.out.println("Two length test =       "+ test(Arrays.copyOf(rand, 2), args[0]));
     Arrays.sort(rand);
     System.out.println("Sort test =             "+ test(rand, args[0]));
-    double end = (System.nanoTime()-start)/1000000000;
-    System.out.println("Total time (s) =        "+ end);
-
   }
   public static void bubbleSort(int[] data){
     int t = data.length;
@@ -78,5 +74,20 @@ public class Sorts{
       ary[t] = min;
       t++;
     }
+  }
+
+  public static void insertionSort(int[] ary){
+	for(int i = 1;i < ary.length; i++){
+		if (ary[i] < ary[i-1]){
+			int tmp = ary[i];
+			for(int j = i;j >=0;j--){
+				if (ary[j] < tmp){
+
+				} else{
+					
+				}
+			}
+		}
+	}	
   }
 }
