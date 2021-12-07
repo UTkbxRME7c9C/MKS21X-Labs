@@ -52,6 +52,8 @@ public class Sorts{
       bubbleSort(copy);
     } else if (type.equals("selectionSort")){
       selectionSort(copy);
+    } else if (type.equals("insertionSort")) {
+      insertionSort(copy);
     }
     Arrays.sort(copy2);
     if (Arrays.equals(copy,copy2))
@@ -77,17 +79,17 @@ public class Sorts{
   }
 
   public static void insertionSort(int[] ary){
-	for(int i = 1;i < ary.length; i++){
-		if (ary[i] < ary[i-1]){
-			int tmp = ary[i];
-			for(int j = i;j >=0;j--){
-				if (ary[j] < tmp){
-
-				} else{
-					
-				}
-			}
-		}
-	}	
+    for(int i = 1;i < ary.length; i++){
+      if (ary[i] < ary[i-1]){
+        int tmp = ary[i];
+        int jt = 0;
+        for(int j = i-1;j >=0 && ary[j] > tmp;j--){
+          ary[j+1]=ary[j];
+          jt = j;
+        }
+        ary[jt] = tmp;
+      }
+    }
   }
+
 }

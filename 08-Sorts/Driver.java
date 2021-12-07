@@ -16,6 +16,10 @@ import java.util.Arrays;
         //if it works this is for timing purposes.
         Sorts.bubbleSort(randish);
       }
+      if(artie[1].equals("insertion")){
+        //if it works this is for timing purposes.
+        Sorts.insertionSort(randish);
+      }
       if(artie[1].equals("test")){
         //if you need to check if it works this is for verification of correctness
         int[] randish2 = Arrays.copyOf(randish,randish.length);
