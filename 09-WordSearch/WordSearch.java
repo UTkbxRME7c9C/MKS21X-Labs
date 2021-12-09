@@ -128,6 +128,16 @@ public class WordSearch{
         if (data.length-row < word.length() || data[row].length-col < word.length()){
           throw new Exception();
         }
+        int tmp2 = 0;
+        for(int i = row;i<data.length;i++){
+          if (data[i][col] != '_' && data[i][col] != word.charAt(tmp2)){
+            throw new Exception();
+          } else{
+            data[i][col] = word.charAt(tmp2);
+            col++;
+            tmp2++;
+          }
+        }
         return true;
       }catch(Exception e){
         return false;
