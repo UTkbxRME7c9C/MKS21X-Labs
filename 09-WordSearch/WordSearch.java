@@ -1,3 +1,4 @@
+
 import java.util.Arrays;
 /*Lab9: Word Search generator
 */
@@ -168,7 +169,7 @@ public class WordSearch{
     }
 
     public boolean addWord(int row, int col, String word, int rowInc, int colInc){
-      if (colInc == 0){
+      if (colInc == 0){ //horizontal
         if (rowInc == 1){
           int tmp = 0;
           if (data[row].length-col < word.length()){
@@ -193,27 +194,67 @@ public class WordSearch{
           if (col+1 < word.length()){
             return false;
           }
-          int tmp = word.length()-1;
+          int tmp = 0;
           for(int i = col;i>0;i--){
-            if(tmp >= 0){
+            if(tmp < word.length()){
               if (data[row][i] != '_' && data[row][i] != word.charAt(tmp)){
                 return false;
               }
-              tmp--;
+              tmp++;
             }
           }
-          tmp = word.length()-1;
+          tmp = 0;
           for(int i = col;i>=0;i--){
-            if(tmp >= 0){
+            if(tmp < word.length()){
               data[row][i] = word.charAt(tmp);
-              tmp--;
+              tmp++;
             }
           }
         }
       } else if (colInc == 1){
-
+        if (rowInc == 0){
+          int tmp = 0;
+          if (data.length-row < word.length() || col >= data[0].length){
+            return false;
+          }
+          for (int i=row;i<data.length;i++){
+            if (tmp < word.length()){
+              if (data[i][col] != '_' && data[i][col] != word.charAt(tmp)){
+                return false;
+              }
+              tmp++;
+            }
+          }
+          tmp = 0;
+          for (int i=row;i<data.length;i++){
+            if (tmp < word.length()){
+              data[i][col] = word.charAt(tmp);
+              tmp++;
+            }
+          }
+        }
       } else if (colInc == -1){
-
+        if (rowInc == 0){
+          if (row+1 < word.length() || row >= data.length){
+            return false;
+          }
+          int tmp = 0;
+          for (int i=row;i>=0;i--){
+            if (tmp < word.length()){
+              if (data[i][col] != '_' && data[i][col] != word.charAt(tmp)){
+                return false;
+              }
+              tmp++;
+            }
+          }
+          tmp = 0;
+          for (int i=row;i>=0;i--){
+            if (tmp < word.length()){
+              data[i][col] = word.charAt(tmp);
+              tmp++;
+            }
+          }
+        }
       }
       return true;
     }

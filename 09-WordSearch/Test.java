@@ -6,8 +6,12 @@ public class Test{
     // System.out.println(a.addWordDiagonal("hioo", 1,5));
     // System.out.println(a.addWordDiagonalRev("baaab", 4,9));
 
-    System.out.println(a.addWord(4,5,"ccc",1,0));
-    System.out.println(a.addWord(4,2,"abb",-1,0));
+    //System.out.println(a.addWord(4,5,"qwe",1,0));
+    //System.out.println(a.addWord(4,2,"rty",-1,0));
+    System.out.println(a.addWord(2,2,"egr",-1,0));
+    ;
+    System.out.println(a.addWord(3,2,"egr",1,0));
     System.out.println(a.toString());
   }
 }
+
