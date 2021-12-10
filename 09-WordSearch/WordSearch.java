@@ -99,28 +99,28 @@ public class WordSearch{
      *or there are overlapping letters that do not match, then false is returned.
      *and the board is NOT modified.
      */
-    public boolean addWordVertical(String word,int row, int col){
-      int tmp2 = 0;
-      if (data.length-row < word.length()){
-        return false;
-      }
-      for (int i=row;i<data.length;i++){
-        if (tmp2 < word.length()){
-          if (data[i][col] != '_' && data[i][col] != word.charAt(tmp2)){
-            return false;
-          }
-          tmp2++;
-        }
-      }
-      tmp2 = 0;
-      for (int i=row;i<data.length;i++){
-        if (tmp2 < word.length()){
-          data[i][col] = word.charAt(tmp2);
-          tmp2++;
-        }
-      }
-      return true;
-    }
+    // public boolean addWordVertical(String word,int row, int col){
+    //   int tmp2 = 0;
+    //   if (data.length-row < word.length()){
+    //     return false;
+    //   }
+    //   for (int i=row;i<data.length;i++){
+    //     if (tmp2 < word.length()){
+    //       if (data[i][col] != '_' && data[i][col] != word.charAt(tmp2)){
+    //         return false;
+    //       }
+    //       tmp2++;
+    //     }
+    //   }
+    //   tmp2 = 0;
+    //   for (int i=row;i<data.length;i++){
+    //     if (tmp2 < word.length()){
+    //       data[i][col] = word.charAt(tmp2);
+    //       tmp2++;
+    //     }
+    //   }
+    //   return true;
+    // }
 
     /**Attempts to add a given word to the specified position of the WordGrid.
      *The word is added from top left towards the bottom right, it must fit on the board,
@@ -132,43 +132,50 @@ public class WordSearch{
      *@return true when the word is added successfully. When the word doesn't fit,
      *or there are overlapping letters that do not match, then false is returned.
      */
-    public boolean addWordDiagonal(String word,int row, int col){
-      if (data.length-row < word.length() || data[row].length-col < word.length()){
-        return false;
-      }
-      int tmp2 = 0;
-      int coltmp = col;
-      for(int i = row;i<data.length;i++){
-        if(tmp2 < word.length()){
-          if (data[i][coltmp] != '_' && data[i][coltmp] != word.charAt(tmp2)){
-            return false;
-          }
-          tmp2++;
-          coltmp++;
-        }
-      }
-      tmp2 = 0;
-      for(int i = row;i<data.length;i++){
-        if(tmp2 < word.length()){
-          data[i][col] = word.charAt(tmp2);
-          col++;
-          tmp2++;
-        }
-      }
-      return true;
-    }
+    // public boolean addWordDiagonal(String word,int row, int col){
+    //   if (data.length-row < word.length() || data[row].length-col < word.length()){
+    //     return false;
+    //   }
+    //   int tmp2 = 0;
+    //   int coltmp = col;
+    //   for(int i = row;i<data.length;i++){
+    //     if(tmp2 < word.length()){
+    //       if (data[i][coltmp] != '_' && data[i][coltmp] != word.charAt(tmp2)){
+    //         return false;
+    //       }
+    //       tmp2++;
+    //       coltmp++;
+    //     }
+    //   }
+    //   tmp2 = 0;
+    //   for(int i = row;i<data.length;i++){
+    //     if(tmp2 < word.length()){
+    //       data[i][col] = word.charAt(tmp2);
+    //       col++;
+    //       tmp2++;
+    //     }
+    //   }
+    //   return true;
+    // }
 
     public boolean addWord(int row, int col, String word, int rowInc, int colInc){
       if (rowInc == 0 && colInc == 0) return false;
+      int x;
+      int y;
       for (int i = 0; i < word.length();i++){
-        int x = col + colInc*i;
-        int y = row + rowInc*i;
+        x = col + colInc*i;
+        y = row + rowInc*i;
         if ((x < 0 || x >= data[row].length) || (y < 0 || y >= data.length)){
           return false;
         }
         if (data[y][x] != '_' && data[y][x] != word.charAt(i)){
           return false;
         }
+      }
+      for (int i = 0; i < word.length();i++){
+        x = col + colInc*i;
+        y = row + rowInc*i;
+        data[y][x] = word.charAt(i);
       }
       return true;
     }
