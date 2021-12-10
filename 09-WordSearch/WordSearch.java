@@ -56,6 +56,7 @@ public class WordSearch{
           if (data[row][i] != '_' && data[row][i] != word.charAt(tmp2)){
             return false;
           }
+          tmp2++;
         }
       }
       tmp2 = 0;
@@ -139,6 +140,7 @@ public class WordSearch{
       return true;
     }
 
+    // this is for testing a reverse diagonal.
     public boolean addWordDiagonalRev(String word,int row, int col){
       if (data.length-row < word.length() || data[row].length-((data[row].length-col)-1)  < word.length()){
         return false;
@@ -165,5 +167,55 @@ public class WordSearch{
       return true;
     }
 
-    
+    public boolean addWord(int row, int col, String word, int rowInc, int colInc){
+      if (colInc == 0){
+        if (rowInc == 1){
+          int tmp = 0;
+          if (data[row].length-col < word.length()){
+            return false;
+          }
+          for(int i = col;i<word.length()+col;i++){
+            if(tmp < word.length()){
+              if (data[row][i] != '_' && data[row][i] != word.charAt(tmp)){
+                return false;
+              }
+              tmp++;
+            }
+          }
+          tmp = 0;
+          for(int i = col;i<data[row].length;i++){
+            if(tmp < word.length()){
+              data[row][i] = word.charAt(tmp);
+              tmp++;
+            }
+          }
+        } else if (rowInc == -1){
+          if (col+1 < word.length()){
+            return false;
+          }
+          int tmp = word.length()-1;
+          for(int i = col;i>0;i--){
+            if(tmp >= 0){
+              if (data[row][i] != '_' && data[row][i] != word.charAt(tmp)){
+                return false;
+              }
+              tmp--;
+            }
+          }
+          tmp = word.length()-1;
+          for(int i = col;i>=0;i--){
+            if(tmp >= 0){
+              data[row][i] = word.charAt(tmp);
+              tmp--;
+            }
+          }
+        }
+      } else if (colInc == 1){
+
+      } else if (colInc == -1){
+
+      }
+      return true;
+    }
+
 }
