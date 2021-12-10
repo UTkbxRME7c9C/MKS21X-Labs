@@ -1,19 +1,26 @@
 
-import java.util.Arrays;
+import java.util.*;
+import java.io.*;
 /*Lab9: Word Search generator
 */
 public class WordSearch{
     private char[][] data;
+    private ArrayList<String> wordsAdded = new ArrayList<String>();
+    private int seed;
+    private Random randgen;
         /**Initialize the grid to the size specified
      *and fill all of the positions with '_'
      *@param rows is the starting height of the WordSearch
      *@param cols is the starting width of the WordSearch
      */
-    public WordSearch(int rows,int cols){
-      data = new char[rows][cols];
-      clear();
-    }
-
+    // public WordSearch(int rows,int cols){
+    //   data = new char[rows][cols];
+    //   clear();
+    // }
+      public WordSearch(int rows, int cols, String filename ){
+        data = new char [rows][cols];
+        clear();
+      }
     /**Set all values in the WordSearch to underscores'_'*/
     private void clear(){
       for (int i=0;i<data.length;i++){
@@ -135,33 +142,6 @@ public class WordSearch{
         if(tmp2 < word.length()){
           data[i][col] = word.charAt(tmp2);
           col++;
-          tmp2++;
-        }
-      }
-      return true;
-    }
-
-    // this is for testing a reverse diagonal.
-    public boolean addWordDiagonalRev(String word,int row, int col){
-      if (data.length-row < word.length() || data[row].length-((data[row].length-col)-1)  < word.length()){
-        return false;
-      }
-      int tmp2 = 0;
-      int coltmp = col;
-      for(int i = row;i<data.length;i++){
-        if(tmp2 < word.length()){
-          if (data[i][coltmp] != '_' && data[i][coltmp] != word.charAt(tmp2)){
-            return false;
-          }
-          tmp2++;
-          coltmp--;
-        }
-      }
-      tmp2 = 0;
-      for(int i = row;i<data.length;i++){
-        if(tmp2 < word.length()){
-          data[i][col] = word.charAt(tmp2);
-          col--;
           tmp2++;
         }
       }
