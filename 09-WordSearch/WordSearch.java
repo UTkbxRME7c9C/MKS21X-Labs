@@ -47,27 +47,25 @@ public class WordSearch{
      * and the board is NOT modified.
      */
     public boolean addWordHorizontal(String word,int row, int col){
-      try{
-        char[] tmp = data[row].clone();
-        int tmp2 = 0;
-        if (data[row].length-col < word.length()){
-          throw new Exception();
-        }
-        for(int i = col;i<data[row].length;i++){
-          if(tmp2 < word.length()){
-            if (tmp[i] != '_' && tmp[i] != word.charAt(tmp2)){
-              throw new Exception();
-            }else{
-              tmp[i] = word.charAt(tmp2);
-              tmp2++;
-            }
-          }
-        }
-        data[row] = tmp.clone();
-        return true;
-      }catch(Exception e){
+      int tmp2 = 0;
+      if (data[row].length-col < word.length()){
         return false;
       }
+      for(int i = col;i<word.length()+col;i++){
+        if(tmp2 < word.length()){
+          if (data[row][i] != '_' && data[row][i] != word.charAt(tmp2)){
+            return false;
+          }
+        }
+      }
+      tmp2 = 0;
+      for(int i = col;i<data[row].length;i++){
+        if(tmp2 < word.length()){
+          data[row][i] = word.charAt(tmp2);
+          tmp2++;
+        }
+      }
+      return true;
     }
 
 
@@ -83,34 +81,26 @@ public class WordSearch{
      *and the board is NOT modified.
      */
     public boolean addWordVertical(String word,int row, int col){
-        try{
-          if (data.length-row < word.length()){
-            throw new Exception();
+      int tmp2 = 0;
+      if (data.length-row < word.length()){
+        return false;
+      }
+      for (int i=row;i<data.length;i++){
+        if (tmp2 < word.length()){
+          if (data[i][col] != '_' && data[i][col] != word.charAt(tmp2)){
+            return false;
           }
-          char[] tmp = new char[data.length];
-          for (int i=0;i<data.length;i++){
-            for (int j = 0;j<data[i].length;j++){
-               tmp[i] = data[i][col];
-            }
-          }
-          int tmp2 = 0;
-          for (int i=row;i<data.length;i++){
-            if (tmp2 < word.length()){
-              if (tmp[i] != '_' && tmp[i] != word.charAt(tmp2)){
-                throw new Exception();
-              } else {
-                tmp[i] = word.charAt(tmp2);
-                tmp2++;
-              }
-            }
-          }
-          for (int i=0;i<data.length;i++){
-            data[i][col] = tmp[i];
-          }
-          return true;
-        }catch( Exception e){
-          return false;
+          tmp2++;
         }
+      }
+      tmp2 = 0;
+      for (int i=row;i<data.length;i++){
+        if (tmp2 < word.length()){
+          data[i][col] = word.charAt(tmp2);
+          tmp2++;
+        }
+      }
+      return true;
     }
 
     /**Attempts to add a given word to the specified position of the WordGrid.
@@ -124,24 +114,56 @@ public class WordSearch{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addWordDiagonal(String word,int row, int col){
-      try{
-        if (data.length-row < word.length() || data[row].length-col < word.length()){
-          throw new Exception();
-        }
-        int tmp2 = 0;
-        for(int i = row;i<data.length;i++){
-          if (data[i][col] != '_' && data[i][col] != word.charAt(tmp2)){
-            throw new Exception();
-          } else{
-            data[i][col] = word.charAt(tmp2);
-            col++;
-            tmp2++;
-          }
-        }
-        return true;
-      }catch(Exception e){
+      if (data.length-row < word.length() || data[row].length-col < word.length()){
         return false;
       }
+      int tmp2 = 0;
+      int coltmp = col;
+      for(int i = row;i<data.length;i++){
+        if(tmp2 < word.length()){
+          if (data[i][coltmp] != '_' && data[i][coltmp] != word.charAt(tmp2)){
+            return false;
+          }
+          tmp2++;
+          coltmp++;
+        }
+      }
+      tmp2 = 0;
+      for(int i = row;i<data.length;i++){
+        if(tmp2 < word.length()){
+          data[i][col] = word.charAt(tmp2);
+          col++;
+          tmp2++;
+        }
+      }
+      return true;
     }
 
+    public boolean addWordDiagonalRev(String word,int row, int col){
+      if (data.length-row < word.length() || data[row].length-((data[row].length-col)-1)  < word.length()){
+        return false;
+      }
+      int tmp2 = 0;
+      int coltmp = col;
+      for(int i = row;i<data.length;i++){
+        if(tmp2 < word.length()){
+          if (data[i][coltmp] != '_' && data[i][coltmp] != word.charAt(tmp2)){
+            return false;
+          }
+          tmp2++;
+          coltmp--;
+        }
+      }
+      tmp2 = 0;
+      for(int i = row;i<data.length;i++){
+        if(tmp2 < word.length()){
+          data[i][col] = word.charAt(tmp2);
+          col--;
+          tmp2++;
+        }
+      }
+      return true;
+    }
+
+    
 }
