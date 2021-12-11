@@ -13,13 +13,22 @@ public class WordSearch{
      *@param rows is the starting height of the WordSearch
      *@param cols is the starting width of the WordSearch
      */
-    public WordSearch(int rows,int cols){
+    public WordSearch(int rows,int cols, String filename){
       data = new char[rows][cols];
       seed = (int)System.currentTimeMillis();
       randgen = new Random(seed);
       clear();
+      addAllWords(filename);
     }
-    /**Set all values in the WordSearch to underscores'_'*/
+
+    public WordSearch(int rows,int cols, String filename, int randSeed){
+      data = new char[rows][cols];
+      seed = randSeed;
+      randgen = new Random(seed);
+      clear();
+      addAllWords(filename);
+    }
+
     private void clear(){
       for (int i=0;i<data.length;i++){
         for (int j = 0;j<data[i].length;j++){
@@ -146,6 +155,21 @@ public class WordSearch{
     //   return true;
     // }
 
+        /**Attempts to add a given word to the specified position of the WordGrid.
+    *The word is added in the direction rowIncrement,colIncrement
+    *Words must have a corresponding letter to match any letters that it overlaps.
+    *
+    *@param word is any text to be added to the word grid.
+    *@param row is the vertical locaiton of where you want the word to start.
+    *@param col is the horizontal location of where you want the word to start.
+    *@param rowInc is -1,0, or 1 and represents the displacement of each letter in the row direction
+    *@param colInc is -1,0, or 1 and represents the displacement of each letter in the col direction
+    *@return true when: the word is added successfully.
+    *        false (and do not change the board at all) when any of the following happen:
+    *        a) rowInc and colInc are both 0,
+    *        b) the word doesn't fit,
+    *        c) there are overlapping letters that do not match
+    */
     private boolean addWord(int row, int col, String word, int rowInc, int colInc){
       if (rowInc == 0 && colInc == 0) return false;
       int x;
@@ -168,7 +192,7 @@ public class WordSearch{
       return true;
     }
 
-    public void addAllWords(String filename){
+    private void addAllWords(String filename){
       wordsAdded = new ArrayList<String>();
       try{
         File file = new File(filename);
