@@ -5,7 +5,7 @@ import java.io.*;
 */
 public class WordSearch{
     private char[][] data;
-    private ArrayList<String> wordsAdded = new ArrayList<String>();
+    private ArrayList<String> wordsAdded;
     private int seed;
     private Random randgen;
         /**Initialize the grid to the size specified
@@ -20,16 +20,7 @@ public class WordSearch{
       // public WordSearch(int rows, int cols, String filename ){
       //   data = new char [rows][cols];
       //   clear();
-      //   try{
-      //     File file = new File(filename);
-      //     Scanner input = new Scanner(file);
-      //     while(input.hasNextLine()){
-      //       wordsAdded.add(input.nextLine());
-      //     }
-      //     input.close();
-      //   }catch (FileNotFoundException e){
-      //     System.out.println("no file");
-      //   }
+
       // }
     /**Set all values in the WordSearch to underscores'_'*/
     private void clear(){
@@ -158,7 +149,7 @@ public class WordSearch{
     //   return true;
     // }
 
-    public boolean addWord(int row, int col, String word, int rowInc, int colInc){
+    private boolean addWord(int row, int col, String word, int rowInc, int colInc){
       if (rowInc == 0 && colInc == 0) return false;
       int x;
       int y;
@@ -178,6 +169,19 @@ public class WordSearch{
         data[y][x] = word.charAt(i);
       }
       return true;
+    }
+
+    private void addAllWords(String filename){
+      wordsAdded = new ArrayList<String>();
+      try{
+        File file = new File(filename);
+        Scanner input = new Scanner(file);
+        while(input.hasNextLine()){
+        }
+        input.close();
+      }catch (FileNotFoundException e){
+        System.out.println("no file");
+      }
     }
 
 }
