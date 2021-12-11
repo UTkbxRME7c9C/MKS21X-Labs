@@ -48,6 +48,11 @@ public class WordSearch{
         }
         ret+="\n";
       }
+      ret+= "Words: ";
+      for (int i = 0; i < wordsAdded.size()-1;i++){
+        ret+= wordsAdded.get(i)+", ";
+      }
+      ret+= wordsAdded.get(wordsAdded.size()-1) + "\nseed: " + seed;
       return ret;
     }
         /**Attempts to add a given word to the specified position of the WordGrid.
