@@ -15,13 +15,10 @@ public class WordSearch{
      */
     public WordSearch(int rows,int cols){
       data = new char[rows][cols];
+      seed = (int)System.currentTimeMillis();
+      randgen = new Random(seed);
       clear();
     }
-      // public WordSearch(int rows, int cols, String filename ){
-      //   data = new char [rows][cols];
-      //   clear();
-
-      // }
     /**Set all values in the WordSearch to underscores'_'*/
     private void clear(){
       for (int i=0;i<data.length;i++){
@@ -171,16 +168,31 @@ public class WordSearch{
       return true;
     }
 
-    private void addAllWords(String filename){
+    public void addAllWords(String filename){
       wordsAdded = new ArrayList<String>();
       try{
         File file = new File(filename);
         Scanner input = new Scanner(file);
         while(input.hasNextLine()){
+          wordsAdded.add(input.nextLine());
         }
         input.close();
       }catch (FileNotFoundException e){
         System.out.println("no file");
+      }
+      int count;
+      for (int i = 0; i < wordsAdded.size();i++){
+        count = 50;
+        while (count > 0){
+          if (addWord(randgen.nextInt(data.length), randgen.nextInt(data[0].length), wordsAdded.get(i), randgen.nextInt(3)-1, randgen.nextInt(3)-1)){
+            break;
+          }
+          count--;
+        }
+        if (count == 0){
+          wordsAdded.remove(i);
+          i--;
+        }
       }
     }
 

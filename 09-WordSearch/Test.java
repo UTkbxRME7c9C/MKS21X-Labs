@@ -8,9 +8,12 @@ public class Test{
 
     //System.out.println(a.addWord(4,5,"qwe",1,0));
     //System.out.println(a.addWord(4,2,"rty",-1,0));
-    System.out.println(a.addWord(2,3,"egr",-1,-1));
+    //System.out.println(a.addWord(2,3,"egr",-1,-1));
     //System.out.println(a.addWord(2,3,"egr",-1,0));
+    a.addAllWords("words");
+    
     System.out.println(a.toString());
   }
+
 }
 
