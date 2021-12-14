@@ -198,30 +198,29 @@ public class WordSearch{
 
     private void addAllWords(String filename){
       wordsAdded = new ArrayList<String>();
+      ArrayList<String> wordsToBeAdded = new ArrayList<String>();
       try{
         File file = new File(filename);
         Scanner input = new Scanner(file);
         while(input.hasNextLine()){
           String in = input.nextLine();
           if (! in.equals(""))
-            wordsAdded.add(in.toUpperCase());
+            wordsToBeAdded.add(in.toUpperCase());
         }
         input.close();
       }catch (FileNotFoundException e){
         System.out.println("no file");
       }
+      Collections.shuffle(wordsToBeAdded, randgen);
       int count;
-      for (int i = 0; i < wordsAdded.size();i++){
+      for (int i = 0; i < wordsToBeAdded.size();i++){
         count = 50;
         while (count > 0){
-          if (addWord(randgen.nextInt(data.length), randgen.nextInt(data[0].length), wordsAdded.get(i), randgen.nextInt(3)-1, randgen.nextInt(3)-1)){
+          if (addWord(randgen.nextInt(data.length), randgen.nextInt(data[0].length), wordsToBeAdded.get(i), randgen.nextInt(3)-1, randgen.nextInt(3)-1)){
+            wordsAdded.add(wordsToBeAdded.get(i));
             break;
           }
           count--;
-        }
-        if (count == 0){
-          wordsAdded.remove(i);
-          i--;
         }
       }
     }
