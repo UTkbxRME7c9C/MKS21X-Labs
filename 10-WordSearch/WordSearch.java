@@ -13,23 +13,25 @@ public class WordSearch{
      *@param rows is the starting height of the WordSearch
      *@param cols is the starting width of the WordSearch
      */
-    public WordSearch(int rows,int cols, String filename){
+    public WordSearch(int rows,int cols, String filename, String mode){
       data = new char[rows][cols];
       randgen = new Random();
       seed = randgen.nextInt();
       randgen = new Random(seed);
       clear();
       addAllWords(filename);
-      fillInRandomLetters();
+      if (mode.equals("0"))
+        fillInRandomLetters();
     }
 
-    public WordSearch(int rows,int cols, String filename, int randSeed){
+    public WordSearch(int rows,int cols, String filename, String mode, int randSeed){
       data = new char[rows][cols];
       seed = randSeed;
       randgen = new Random(seed);
       clear();
       addAllWords(filename);
-      fillInRandomLetters();
+      if (mode.equals("0"))
+        fillInRandomLetters();
     }
 
     private void clear(){
@@ -236,4 +238,15 @@ public class WordSearch{
       }
     }
 
+    public static void main(String[] args){
+      WordSearch puzzle;
+      if (args.length == 5){
+        puzzle = new WordSearch(Integer.parseInt(args[0]),Integer.parseInt(args[1]),args[2], args[3], Integer.parseInt(args[4]));
+      } else {
+        puzzle = new WordSearch(Integer.parseInt(args[0]),Integer.parseInt(args[1]),args[2], args[3]);
+      }
+      System.out.println(puzzle.toString());
+    }
+
 }
+// public WordSearch(int rows,int cols, String filename, int randSeed){
