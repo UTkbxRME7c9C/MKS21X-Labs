@@ -20,6 +20,7 @@ public class WordSearch{
       randgen = new Random(seed);
       clear();
       addAllWords(filename);
+      fillInRandomLetters();
     }
 
     public WordSearch(int rows,int cols, String filename, int randSeed){
@@ -28,6 +29,7 @@ public class WordSearch{
       randgen = new Random(seed);
       clear();
       addAllWords(filename);
+      fillInRandomLetters();
     }
 
     private void clear(){
@@ -221,6 +223,15 @@ public class WordSearch{
             break;
           }
           count--;
+        }
+      }
+    }
+
+    private void fillInRandomLetters(){
+      for (int i=0;i<data.length;i++){
+        for (int j = 0;j<data[i].length;j++){
+          if (data[i][j] == '_')
+            data[i][j] = (char) (randgen.nextInt(26)+65);
         }
       }
     }

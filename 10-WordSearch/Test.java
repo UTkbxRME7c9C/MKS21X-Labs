@@ -1,6 +1,6 @@
 public class Test{
   public static void main(String[] args){
-    WordSearch a = new WordSearch(10,20, "words");
+    WordSearch a = new WordSearch(7,7, "words", -1814764675);
    // System.out.println(a.addWordHorizontal("cccc", 0, 0));
     // System.out.println(a.addWordVertical("aaaa", 1, 2));
     // System.out.println(a.addWordDiagonal("hioo", 1,5));
