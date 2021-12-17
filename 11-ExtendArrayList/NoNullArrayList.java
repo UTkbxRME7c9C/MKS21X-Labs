@@ -9,7 +9,7 @@ public class NoNullArrayList<T> extends ArrayList<T> {
     }
     private void isNull(T t){
         if (t == null)
-            throw new IllegalArgumentException("plz no null");
+          throw new IllegalArgumentException("plz no null");
     }
     public boolean add(T t){
         isNull(t);
