@@ -1,32 +1,30 @@
 public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T>{
   public OrderedArrayList(){
-      super();
+    super();
   }
   public OrderedArrayList(int cap){
-      super(cap);
+    super(cap);
   }
   public boolean add(T t){
-      return super.add(t);
+    whereToPlace(t);
+    return true;
   }
-  // public void add(int index, T t){
-  //     isNull(t);
-  //     super.add(index, t);
-  // }
-  // public T set(int index, T t){
-  //     isNull(t);
-  //     return(super.set(index, t));
-  // }
-
-  // private void insertionSort(int[] ary){
-  // for(int i = 1;i < ary.length; i++){
-  //   if (ary[i] < ary[i-1]){
-  //     int tmp = ary[i];
-  //     int jt = 0;
-  //     for(int j = i-1;j >=0 && ary[j] > tmp;j--){
-  //       ary[j+1]=ary[j];
-  //       jt = j;
-  //     }
-  //     ary[jt] = tmp;
-  //   }
-  // }
+  public void add(int index, T t){
+		whereToPlace(t);
+  }
+  public T set(int index, T t){
+    T a = super.get(index);
+    super.remove(index);
+    whereToPlace(t);
+    return(a);
+  }
+  private void whereToPlace(T value){
+    int a = 0;
+    for (int i = super.size()-1;i>=0 && super.get(i).compareTo(value)>0;i--){
+      a = i;
+    }
+    if (super.get(super.size()-1).compareTo(value)<=0)
+      super.add(value);
+    super.add(a,value);
+  }
 }
