@@ -1,11 +1,15 @@
-import java.util.Random;
 public abstract class Adventurer implements Damageable{
     private String name;
     private int HP;
+    private int XP;
 
     //Abstract methods are meant to be implemented in child classes.
     public abstract void attack(Damageable other);
     public abstract void specialAttack(Damageable other);
+    public abstract void heal();
+    public abstract void specialHeal();
+    public abstract void heal(Damageable other);
+    public abstract void specialHeal(Damageable other);
 
     public Adventurer(){
   	   this("Lester");
@@ -34,8 +38,20 @@ public abstract class Adventurer implements Damageable{
 	     return HP;
     }
 
+    public int getXP(){
+      return XP; 
+    }
+
+    public void setXP(int amt){
+      this.XP += amt;
+    }
+
     public void applyDamage(int amount){
       this.HP -= amount;
+    }
+
+    public void applyHeal(int amount){
+      this.HP += amount;
     }
 
     //Set Methods
@@ -46,6 +62,5 @@ public abstract class Adventurer implements Damageable{
     public void setName(String s){
 	     this.name = s;
     }
-
 
 }
