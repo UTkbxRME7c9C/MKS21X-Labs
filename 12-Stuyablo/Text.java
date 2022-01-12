@@ -62,28 +62,32 @@ public class Text{
       int[] randum = {(int)(Math.random()*100),(int)(Math.random()*100),(int)(Math.random()*100),(int)(Math.random()*100)};
       hideCursor();
       clear();
-      go(2,16);
-      System.out.println(randum[0]);
-      go(2,32);
-      System.out.println(randum[1]);
-      go(2,48);
-      System.out.println(randum[2]);
-      go(2,64);
-      System.out.println(randum[3]);
+      for(int i = 0;i<4;i++){
+        int space = 16*(i+1);
+        go(2,space);
+        if (randum[i] <= 25){
+          System.out.println(colorize(Integer.toString(randum[i]),RED));
+        }else if (randum[i] >= 75){
+          System.out.println(colorize(Integer.toString(randum[i]),GREEN));
+        }else{
+          System.out.println(colorize(Integer.toString(randum[i]),WHITE));
+        }
+      }
       go(1,1);
       for(int i = 1;i<=80;i++){
-        System.out.print(colorize(" ",RED+BACKGROUND));
+        System.out.print(colorize(" ",BLUE+BACKGROUND));
       } 
       for(int i = 1;i<=30;i++){
         go(i,1);
-        System.out.print(colorize(" ",RED+BACKGROUND));
+        System.out.print(colorize(" ",BLUE+BACKGROUND));
         go(i,80);
-        System.out.print(colorize(" ",RED+BACKGROUND));
+        System.out.print(colorize(" ",BLUE+BACKGROUND));
       } 
       go(30,1);
       for(int i = 1;i<=80;i++){
-        System.out.print(colorize(" ",RED+BACKGROUND));
-      }     
+        System.out.print(colorize(" ",BLUE+BACKGROUND));
+      }    
+      go(31,0);
       reset();
       showCursor();
     }
