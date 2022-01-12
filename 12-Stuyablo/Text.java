@@ -59,8 +59,17 @@ public class Text{
     //Tested and working in:
     //git-bash (windows 10),    wsl (windows 10+11),   powershell windows 11
     public static void main(String[] args) {
+      int[] randum = {(int)(Math.random()*100),(int)(Math.random()*100),(int)(Math.random()*100),(int)(Math.random()*100)};
       hideCursor();
       clear();
+      go(2,16);
+      System.out.println(randum[0]);
+      go(2,32);
+      System.out.println(randum[1]);
+      go(2,48);
+      System.out.println(randum[2]);
+      go(2,64);
+      System.out.println(randum[3]);
       go(1,1);
       for(int i = 1;i<=80;i++){
         System.out.print(colorize(" ",RED+BACKGROUND));
