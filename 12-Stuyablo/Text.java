@@ -1,9 +1,9 @@
 import java.util.Scanner;
 import java.util.Random;
 public class Text{
-    public static Random rand = new Random();
-    public static int seed = rand.nextInt();
-    public static boolean isEmpty = false;
+    private static Random rand = new Random();
+    private static int seed = rand.nextInt();
+    private static boolean isEmpty = false;
   /*Base colors*/
     public static final int BLACK = 30;
     public static final int RED = 31;
@@ -60,24 +60,30 @@ public class Text{
       return ("\u001b[" + c1 + ";" + c2 + ";" + c3 + "m"+text+"\u001b[0m");
     }
   
-    public static void border(int w, int h){
+    public static void border(int w, int h, int bordercol, int textcol){
+      bordercol += BACKGROUND;
       go(1,1);
       for(int i = 1;i<=w;i++){
-        System.out.print(colorize(" ",BLUE+BACKGROUND));
+        System.out.print(colorize("-",bordercol,textcol));
       } 
       for(int i = 1;i<=h;i++){
         go(i,1);
-        System.out.print(colorize(" ",BLUE+BACKGROUND));
+        System.out.print(colorize("|",bordercol,textcol));
         go(i,w);
-        System.out.print(colorize(" ",BLUE+BACKGROUND));
+        System.out.print(colorize("|",bordercol,textcol));
       } 
       go(h,1);
       for(int i = 1;i<=w;i++){
-        System.out.print(colorize(" ",BLUE+BACKGROUND));
+        System.out.print(colorize("-",bordercol,textcol));
       }    
+      go(1,1);System.out.print(colorize("*",bordercol,textcol));
+      go(h,1);System.out.print(colorize("*",bordercol,textcol));
+      go(1,w);System.out.print(colorize("*",bordercol,textcol));
+      go(h,w);System.out.print(colorize("*",bordercol,textcol));
+      go(h+1,0);
     }
 
-    public static void randary(boolean newseed, int w){
+    private static void randary(boolean newseed, int w){// for testing only
       Random newrand;
       if (newseed){
         newrand = new Random(seed);
@@ -87,7 +93,7 @@ public class Text{
       }
       int[] randum = {newrand.nextInt(100),newrand.nextInt(100),newrand.nextInt(100),newrand.nextInt(100)};
       for(int i = 0;i<4;i++){
-        int space = (w/5)*(i+1);
+        int space = (((w/4)*(i))+2);
         go(2,space);
         if (randum[i] <= 25){
           System.out.println(colorize(Integer.toString(randum[i]),RED));
@@ -100,14 +106,14 @@ public class Text{
     }
     //Tested and working in:
     //git-bash (windows 10),    wsl (windows 10+11),   powershell windows 11
-    public static void main(String[] args) {
+    public static void main(String[] args) { // for testing only
       hideCursor();
       clear();
       if (isEmpty){
         randary(true, 80);
         isEmpty = false;
       } else {randary(false, 80);}
-      border(80,30);
+      border(80,30, BLUE, BLACK);
       go(31,0);
       System.out.print(">");
       Scanner a = new Scanner(System.in);
@@ -115,6 +121,7 @@ public class Text{
       if (b.equals("q") || b.equals("quit")){
         reset();
         showCursor();
+        a.close();
       } else if (b.equals("")){
         isEmpty = true;
         main(null);

@@ -11,7 +11,7 @@ public class Warrior extends Adventurer {
     }
 
     public Warrior(String name, String warcry, int rage){
-      super(name,30+(int)(Math.random()*10));
+      super(name);
       setWarcry(warcry);
       setRage(rage);
     }
@@ -77,6 +77,9 @@ public class Warrior extends Adventurer {
 
     //get methods
 
+    public String getid(){
+      return "Rage";
+    }
     public int getRage(){
 	     return rage;
     }
