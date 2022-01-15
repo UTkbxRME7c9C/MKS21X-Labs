@@ -19,10 +19,6 @@ public class Game{
     b.heal();
     HPstat(a);
     HPstat(b);
-    a.specialHeal(b);
-    b.specialHeal(a);
-    HPstat(a);
-    HPstat(b);
     }
 
 }

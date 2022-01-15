@@ -1,6 +1,7 @@
 public class Warrior extends Adventurer {
     private int rage;
     private String warcry;
+    private int maxrage;
 
     public Warrior(){
 	     this("Magnus");
@@ -14,6 +15,7 @@ public class Warrior extends Adventurer {
       super(name);
       setWarcry(warcry);
       setRage(rage);
+      setMaxRage(rage);
     }
 
     //warrior methods
@@ -38,13 +40,6 @@ public class Warrior extends Adventurer {
     }
 
     public void heal(){
-      int newheal = (int)(Math.random()*10)+1;
-      applyHeal(newheal);
-      setRage(getRage()+1);
-      System.out.println(this + " heals themselves for " + newheal + " HP!");
-    }
-
-    public void specialHeal(){
 	    if(getRage() >= 10){
         int newheal = (int)(Math.random()*20)+1;
         applyHeal(newheal);
@@ -54,25 +49,6 @@ public class Warrior extends Adventurer {
           System.out.println("Not enough rage! ");
           heal();
       }
-    }
-
-    public void heal(Damageable other){
-      int newheal = (int)(Math.random()*10)+1;
-      other.applyHeal(newheal);
-      setRage(getRage()+1);
-      System.out.println(this + " heals " + other + " for " + newheal + " HP!");
-    }
-
-    public void specialHeal(Damageable other){
-      if(getRage() >= 10){
-        int newheal = (int)(Math.random()*20)+1;
-        other.applyHeal(newheal);
-        System.out.println(this + " performs a strong mend on "+ other + " for " + newheal + " HP!");
-        setRage(getRage()-10);
-    }else{
-        System.out.println("Not enough rage! ");
-        heal(other);
-    }
     }
 
     //get methods
@@ -92,7 +68,12 @@ public class Warrior extends Adventurer {
     public void setWarcry(String warcry){
 	     this.warcry = warcry;
     }
-
+    public void setMaxRage(int r){
+      this.maxrage = r;
+    }
+    public int getMaxRage(){
+      return maxrage;
+    }
     public String getWarcry(){
       return warcry;
     }

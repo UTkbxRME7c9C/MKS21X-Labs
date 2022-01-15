@@ -2,17 +2,14 @@ public abstract class Adventurer implements Damageable{
     private String name;
     private int HP;
     private int maxHP;
-    private int XP;
 
     //Abstract methods are meant to be implemented in child classes.
     public abstract void attack(Damageable other);
     public abstract void specialAttack(Damageable other);
     public abstract void heal();
-    public abstract void specialHeal();
-    public abstract void heal(Damageable other);
-    public abstract void specialHeal(Damageable other);
     public abstract String getid();
     public abstract int getRage();
+    public abstract int getMaxRage();
 
     public Adventurer(){
   	   this("Lester");
@@ -42,15 +39,8 @@ public abstract class Adventurer implements Damageable{
 	     return HP;
     }
 
-    public int getXP(){
-      return XP; 
-    }
-
     public int getmaxHP(){
       return maxHP;
-    }
-    public void setXP(int amt){
-      this.XP += amt;
     }
 
     public void applyDamage(int amount){

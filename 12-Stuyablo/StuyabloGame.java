@@ -6,8 +6,7 @@ public class StuyabloGame{
   private static final int BORDER_BACKGROUND = Text.WHITE;
 
   public static void main(String[] args) {
-    drawScreen();
-    drawText("bruhh", 3);
+    run();
   }
 
   //Display a List of 1-4 adventurers on the rows row through row+3 (4 rows max)
@@ -18,9 +17,16 @@ public class StuyabloGame{
       Text.go(startRow,space);
       System.out.print(party.get(i).getName());
       Text.go(startRow+1,space);
-      System.out.println(party.get(i).getid()+": "+party.get(i).getRage());
+      System.out.print(party.get(i).getid()+": "+party.get(i).getRage()+"/"+party.get(i).getMaxRage());
       Text.go(startRow+2,space);
-      System.out.println("HP: "+party.get(i).getHP()+"/"+party.get(i).getmaxHP());
+      double hper = party.get(i).getHP()/party.get(i).getmaxHP();
+      if(hper <= 0.25){
+        System.out.print("HP: "+Text.colorize(party.get(i).getHP()+"/"+party.get(i).getmaxHP(),Text.RED));
+      }else if (hper >= 0.75){
+        System.out.print("HP: "+Text.colorize(party.get(i).getHP()+"/"+party.get(i).getmaxHP(),Text.GREEN));
+      }else{
+        System.out.print("HP: "+party.get(i).getHP()+"/"+party.get(i).getmaxHP());
+      }
     }
   }
 
@@ -28,18 +34,22 @@ public class StuyabloGame{
   public static void drawText(String s,int startRow){
     Text.go(startRow, 2);
     System.out.print(s);
-    Text.go(HEIGHT+1, 1);
   }
 
   public static void drawScreen(){
     Text.hideCursor();
     Text.clear();
     Text.border(WIDTH,HEIGHT,BORDER_BACKGROUND,BORDER_COLOR);
-    Text.go(6,2);
+    Text.go(5,2);
     for(int i = 0;i<WIDTH-2;i++){
       System.out.print(Text.colorize("-",BORDER_BACKGROUND+Text.BACKGROUND,BORDER_COLOR));
     }
-    Text.go(HEIGHT+1,1);
+    Text.go(HEIGHT-4,2);
+    for(int i = 0;i<WIDTH-2;i++){
+      System.out.print(Text.colorize("-",BORDER_BACKGROUND+Text.BACKGROUND,BORDER_COLOR));
+    }
+    Text.go(5,(WIDTH/2)-3); System.out.print(Text.colorize("PARTY",BORDER_BACKGROUND+Text.BACKGROUND,Text.GREEN));
+    Text.go(HEIGHT-4,(WIDTH/2)-4); System.out.print(Text.colorize("ENEMIES",BORDER_BACKGROUND+Text.BACKGROUND,Text.RED));
   }
 
 
@@ -53,16 +63,14 @@ public class StuyabloGame{
     //Things to attack:
     //Make an ArrayList of Adventurers and add 1 enemy to it.
     ArrayList<Adventurer>enemies = new ArrayList<>();
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+    enemies.add(new Warrior("aa","aa", 20));
 
     //Adventurers you control:
     //Make an ArrayList of Adventurers and add 3 Adventurers to it.
     ArrayList<Adventurer> party = new ArrayList<>();
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+    party.add(new Warrior("aaa","aaa", 20));
+    party.add(new Wizard("bbb","bbb", 20));
+    party.add(new Wizard("ccc","ccc", 20));
 
     //Main loop
     boolean partyTurn = false;
@@ -79,7 +87,7 @@ public class StuyabloGame{
       //display event based on last turn's input
       if(partyTurn){
         //Process user input:
-        if(input.equals("attack")){
+        if(input.equals("attack") || input.equals("")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           //YOUR CODE HERE
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -122,7 +130,7 @@ public class StuyabloGame{
 
       //display current state of all Adventurers
       drawParty(party,2);
-      drawParty(enemies,HEIGHT-5);
+      drawParty(enemies,HEIGHT-3);
 
       //Draw the prompt
       Text.reset();
