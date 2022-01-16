@@ -8,52 +8,51 @@ public class Wizard extends Adventurer {
     }
 
     public Wizard(String name){
-	     this(name,"Prepare for your unhealing!", 18);
+	     this(name,"No more exist!!", 20);
     }
 
     public Wizard(String name, String warcry, int mana){
       super(name);
       setWarcry(warcry);
-      setRage(mana);
-      setMaxRage(mana);
+      setSpecial(mana);
+      setSpecialMax(mana);
     }
 
+    public Wizard(String name, String warcry, int rage, int health){
+      super(name, health);
+      setWarcry(warcry);
+      setSpecial(rage);
+      setSpecialMax(rage);
+    }
+
+
     public void attack(Damageable other){
-        int damage = (int)(Math.random()*10)+1;
-        other.applyDamage(damage);
-        setRage(getRage() + 1);
-        System.out.print(this + " attacked " + other + " for " +damage + " HP!");
+      int damage = (int)(Math.random()*10)+1;
+      other.applyDamage(damage);
+      if (getSpecialMax() > getSpecial()){
+        setSpecial(getSpecial() + 1);
+      }
+      System.out.print(this + " attacked " + other + " for " +damage + " HP!");
     }
 
     public void specialAttack(Damageable other){
-      if(getRage() >= 10){
-          int damage = (int)(Math.random()*20)+1;
-        other.applyDamage(damage);
-        System.out.print(this + " greatly curses "+ other + " for " + damage + " HP! "+warcry);
-        setRage(getRage()-10);
-      }else{
-        System.out.print("Not enough mana! ");
-        attack(other);
-      }
+      int damage = (int)(Math.random()*20)+1;
+      other.applyDamage(damage);
+      System.out.print(this + " greatly curses "+ other + " for " + damage + " HP! "+warcry);
+      setSpecial(getSpecial()-10);
     }
   
-    public void heal(){
-          if(getRage() >= 10){
-          int newheal = (int)(Math.random()*20)+1;
-          applyHeal(newheal); 
-          System.out.print(this + " does magic blessings on himself for " + newheal + " HP! "+warcry);
-          setRage(getRage()-10);
-        }else{
-            System.out.print("Not enough mana! ");
-            heal();
-        }
+    public void heal(int newheal){
+      applyHeal(newheal); 
+      System.out.print(this + " does magic healings for " + newheal + " HP! "+warcry);
+      setSpecial(getSpecial()-10);
     }
 
-      public String getid(){
+      public String getSpecialName(){
         return "Mana";
       }
 
-    public int getRage(){
+    public int getSpecial(){
         return mana;
     }
 
@@ -61,17 +60,17 @@ public class Wizard extends Adventurer {
         return warcry;
     }
 
-    public void setRage(int r){
+    public void setSpecial(int r){
         this.mana = r;
     }
 
     public void setWarcry(String warcry){
         this.warcry = warcry;
     }
-    public void setMaxRage(int r){
+    public void setSpecialMax(int r){
       this.maxmana = r;
     }
-    public int getMaxRage(){
+    public int getSpecialMax(){
       return maxmana;
     }
 }

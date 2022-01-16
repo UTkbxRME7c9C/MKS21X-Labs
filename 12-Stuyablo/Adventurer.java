@@ -6,10 +6,10 @@ public abstract class Adventurer implements Damageable{
     //Abstract methods are meant to be implemented in child classes.
     public abstract void attack(Damageable other);
     public abstract void specialAttack(Damageable other);
-    public abstract void heal();
-    public abstract String getid();
-    public abstract int getRage();
-    public abstract int getMaxRage();
+    public abstract void heal(int newheal);
+    public abstract String getSpecialName();
+    public abstract int getSpecial();
+    public abstract int getSpecialMax();
 
     public Adventurer(){
   	   this("Lester");
@@ -20,9 +20,9 @@ public abstract class Adventurer implements Damageable{
     }
 
     public Adventurer(String name, int hp){
-       this.name = name;
-       this.HP = hp;
-       this.maxHP = hp;
+      setName(name);
+      setmaxHP(hp);
+      setHP(hp);
     }
 
     //toString method
@@ -54,6 +54,9 @@ public abstract class Adventurer implements Damageable{
     //Set Methods
     public void setHP(int health){
 	     this.HP = health;
+    }
+    public void setmaxHP(int health){
+      this.maxHP = health;
     }
 
     public void setName(String s){
