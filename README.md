@@ -1,5 +1,4 @@
 # MKS21X-Labs
 
 apcs lab stuff
-
-2nd part of MKS21X-CtoF
+do not look if you have apcs with k otherwise thats academic dishonesty
